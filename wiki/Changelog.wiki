@@ -4,6 +4,6 @@ Changelog:
     First version.
 
  - Version 1.1(beta):
-    Little change in GUI,
-    Added history of used IP's
+    Little change in GUI<br>
+    Added history of used IP's<br>
     Fixed auto detect tibia version

@@ -1,0 +1,46 @@
+# Project: Projekt1
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ 7.3 on 21-01-11 17:35
+
+WXLIBNAME = wxmsw28
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = Objects/MingW/main.o Objects/MingW/gui.o Objects/MingW/change.o Objects/MingW/history.o Objects/MingW/ip-changer_private.res
+LINKOBJ   = "Objects/MingW/main.o" "Objects/MingW/gui.o" "Objects/MingW/change.o" "Objects/MingW/history.o" Objects/MingW/ip-changer_private.res
+LIBS      = -L"D:/Program Files/wxDev-Cpp/Lib" -mwindows -l$(WXLIBNAME) -l$(WXLIBNAME)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  
+INCS      = -I"D:/Program Files/wxDev-Cpp/Include"
+CXXINCS   = -I"D:/Program Files/wxDev-Cpp/lib/gcc/mingw32/3.4.5/include" -I"D:/Program Files/wxDev-Cpp/include/c++/3.4.5/backward" -I"D:/Program Files/wxDev-Cpp/include/c++/3.4.5/mingw32" -I"D:/Program Files/wxDev-Cpp/include/c++/3.4.5" -I"D:/Program Files/wxDev-Cpp/include" -I"D:/Program Files/wxDev-Cpp/" -I"D:/Program Files/wxDev-Cpp/include/3rdparty/wx/plotctrl" -I"D:/Program Files/wxDev-Cpp/include/3rdparty/wx/sheet" -I"D:/Program Files/wxDev-Cpp/include/3rdparty/wx/treemultictrl" -I"D:/Program Files/wxDev-Cpp/include/3rdparty/wx/things" -I"D:/Program Files/wxDev-Cpp/include/3rdparty/wx" -I"D:/Program Files/wxDev-Cpp/include/3rdparty" -I"D:/Program Files/wxDev-Cpp/include/common/wx/msw" -I"D:/Program Files/wxDev-Cpp/include/common/wx/generic" -I"D:/Program Files/wxDev-Cpp/include/common/wx/fl" -I"D:/Program Files/wxDev-Cpp/include/common/wx/gizmos" -I"D:/Program Files/wxDev-Cpp/include/common/wx/html" -I"D:/Program Files/wxDev-Cpp/include/common/wx/mmedia" -I"D:/Program Files/wxDev-Cpp/include/common/wx/net" -I"D:/Program Files/wxDev-Cpp/include/common/wx/ogl" -I"D:/Program Files/wxDev-Cpp/include/common/wx/plot" -I"D:/Program Files/wxDev-Cpp/include/common/wx/protocol" -I"D:/Program Files/wxDev-Cpp/include/common/wx/stc" -I"D:/Program Files/wxDev-Cpp/include/common/wx/svg" -I"D:/Program Files/wxDev-Cpp/include/common/wx/xml" -I"D:/Program Files/wxDev-Cpp/include/common/wx/xrc" -I"D:/Program Files/wxDev-Cpp/include/common/wx" -I"D:/Program Files/wxDev-Cpp/include/common"
+RCINCS    = --include-dir "D:/PROGRA~1/WXDEV-~1/include/common"
+BIN       = Output/MingW/ip-changer.exe
+DEFINES   = -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__
+CXXFLAGS  = $(CXXINCS) $(DEFINES) -fno-exceptions -fno-pcc-struct-return -fstrict-aliasing -Wall -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__   -fexpensive-optimizations -O3
+CFLAGS    = $(INCS) $(DEFINES) -fno-exceptions -fno-pcc-struct-return -fstrict-aliasing -Wall -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__   -fexpensive-optimizations -O3
+GPROF     = gprof.exe
+RM        = rm -f
+LINK      = g++.exe
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(LINKOBJ) "$(BIN)"
+
+$(BIN): $(OBJ)
+	$(LINK) $(LINKOBJ) -o "$(BIN)" $(LIBS) 
+
+Objects/MingW/main.o: $(GLOBALDEPS) main.cpp
+	$(CPP) -c main.cpp -o Objects/MingW/main.o $(CXXFLAGS)
+
+Objects/MingW/gui.o: $(GLOBALDEPS) gui.cpp
+	$(CPP) -c gui.cpp -o Objects/MingW/gui.o $(CXXFLAGS)
+
+Objects/MingW/change.o: $(GLOBALDEPS) change.cpp
+	$(CPP) -c change.cpp -o Objects/MingW/change.o $(CXXFLAGS)
+
+Objects/MingW/history.o: $(GLOBALDEPS) history.cpp
+	$(CPP) -c history.cpp -o Objects/MingW/history.o $(CXXFLAGS)
+
+Objects/MingW/ip-changer_private.res: Objects/MingW/ip-changer_private.rc ip-changerApp.rc 
+	$(WINDRES) --input-format=rc -o Objects/MingW/ip-changer_private.res $(RCINCS) Objects/MingW/IP-CHA~1.RC -O coff

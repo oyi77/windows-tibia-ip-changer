@@ -67,7 +67,7 @@ Frame::Frame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoi
 	SetMenuBar(menubar);
     trayIcon = new TrayIcon(this);
     wxIcon icon(Self_Frame_XPM);
-	if(!trayIcon->SetIcon(icon, wxT("IP Chabger")))
+	if(!trayIcon->SetIcon(icon, wxT("IP Changer")))
         wxMessageBox(wxT("Could not set icon."));
 	SetStatusBar(sb);
 	SetTitle(wxT("IP Changer"));

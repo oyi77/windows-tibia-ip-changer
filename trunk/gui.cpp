@@ -11,6 +11,7 @@ BEGIN_EVENT_TABLE(Frame,wxFrame)
 	EVT_BUTTON(wxID_EXIT, Frame::FrameClickEvents)
 	EVT_BUTTON(BUTTON_ADD_TO_TRAY, Frame::FrameClickEvents)
 	EVT_MENU(MENU_INFO, Frame::FrameClickEvents)
+	EVT_MENU(MENU_CLEAR_HISTORY, Frame::FrameClickEvents)
 END_EVENT_TABLE()
 
 BEGIN_EVENT_TABLE(TrayIcon, wxTaskBarIcon)
@@ -40,16 +41,13 @@ Frame::Frame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoi
 		arrayStringFor_ip.Add(wxs);
 	}
 	ip = new wxComboBox(WxPanel1, -1, wxT(""), wxPoint(11, 17), wxSize(214, 21), arrayStringFor_ip);
-	//ip = new wxTextCtrl(WxPanel1, -1, wxT(""), wxPoint(11, 17), wxSize(214, 21));
 	wxArrayString arrayStringFor_clients;
 	arrayStringFor_clients.Add(wxT("Auto"));
 	for(int i = 0; i < int(sizeof(adresses)/sizeof(adresses[0])); i++){
         wxString wxs(adresses[i][0].insert(1, ".").c_str(), wxConvUTF8);
         arrayStringFor_clients.Add(wxs);
     }
-	//host = new wxTextCtrl(WxPanel1, -1, wxT("7171"), wxPoint(238, 17), wxSize(37, 21), wxTE_CENTRE);
 	host = new wxSpinCtrl(WxPanel1, wxID_ANY, wxT("7171"), wxPoint(232, 17), wxSize(55, 21), wxSP_ARROW_KEYS, 1000, 9999, 7171);
-    //host->SetMaxLength(4);
     clients = new wxComboBox(WxPanel1, -1, wxT("Auto"), wxPoint(289, 17), wxSize(54, 21), arrayStringFor_clients, wxCB_READONLY);
 	(void) new wxButton(WxPanel1, BUTTON_CHANGE_IP, wxT("Change IP"), wxPoint(81, 40), wxSize(87, 31));
     Connect(BUTTON_CHANGE_IP, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(Frame::FrameClickEvents));
@@ -59,7 +57,8 @@ Frame::Frame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoi
 
 	wxMenuBar *menubar = new wxMenuBar();
 	wxMenu *file = new wxMenu;
-	//file->AppendSeparator(); 
+	file->Append(MENU_CLEAR_HISTORY, wxT("Clear History"));
+	file->AppendSeparator(); 
 	file->Append(wxID_EXIT, wxT("Exit"));
 	menubar->Append(file, wxT("File"));
 	wxMenu *help = new wxMenu;
@@ -97,7 +96,6 @@ void guiChangeIP(Frame *frame, int eventId){
         return;
     }
     std::string sip = std::string(frame->ip->GetValue().mb_str());
-    //std::string sport = std::string(frame->host->GetValue().mb_str());
     int sport = frame->host->GetValue();
     std::string client = std::string(frame->clients->GetValue().mb_str());
     if(sip == ""){
@@ -163,6 +161,15 @@ void Frame::FrameClickEvents(wxCommandEvent& event)
         }
         case MENU_INFO:{
 			sendDialog(wxT("This program change IP tibia client in order to connect to Open Tibia Server.\nLicense: GNU GPL\nProgrammer: Miziak.\nAdress Finder: Virtelio.\nWrote in wxWidgets library."), wxOK | wxICON_INFORMATION);
+			break;
+        }
+        case MENU_CLEAR_HISTORY:{
+            ofstream plik(string("./history").c_str()); 
+            plik<<""; 
+            plik.close();
+            ip->Clear();
+            sb->SetStatusText(wxT("History Cleared!"),0);
+            ip->SetValue(wxT(""));
 			break;
         }
     }

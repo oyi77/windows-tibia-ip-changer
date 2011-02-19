@@ -67,27 +67,28 @@ std::string Change::getClientVersion()
 	if(!VALUE) return 0;
 
 	switch(std::abs(int(VALUE))){
-        case 1947662723: return "760"; break;
-        case 800224000:  return "780"; break;
-        case 1793887061:  return "792"; break;
-        case 1196488705: return "800"; break;
-        case 1056666274: return "810"; break;
-        case 1929356714: return "820"; break;
-        case 220:        return "821"; break;
-        case 1593835520: return "822"; break;
-        case 4559860:    return "830"; break;
-        case 286571:     return "840"; break;
-        case 265075:     return "841"; break;
-        case 1678442657: return "842"; break;
-        case 2293592:    return "850"; break;
-        case 737977104:  return "852"; break;
-        case 3152:       return "854"; break;
-        case 907476993:  return "855"; break;
-		case 620720247:  return "857"; break;
-		case 74056298:   return "860"; break;
-		case 103814912:  return "861"; break;
-        case 90375192:   return "862"; break;
-		case 41843:      return "870"; break;
+        case 1947662723: return "760";
+        case 800224000:  return "780";
+        case 1793887061: return "792";
+        case 1196488705: return "800";
+        case 1056666274: return "810";
+        case 1929356714: return "820";
+        case 220:        return "821";
+        case 1593835520: return "822";
+        case 4559860:    return "830";
+        case 286571:     return "840";
+        case 265075:     return "841";
+        case 1678442657: return "842";
+        case 2293592:    return "850";
+        case 737977104:  return "852";
+        case 3152:       return "854";
+        case 907476993:  return "855";
+		case 620720247:  return "857";
+		case 74056298:   return "860";
+		case 103814912:  return "861";
+        case 90375192:   return "862";
+		case 41843:      return "870";
+		case 1170669562: return "871";
 		default:         return "";
 	}
 }

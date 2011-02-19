@@ -11,7 +11,8 @@ enum{
 	BUTTON_CHANGE_IP = 101,
 	MENU_O_M = 102,
 	MENU_INFO = 103,
-	MENU_CHANGE_IP = 104
+	MENU_CHANGE_IP = 104,
+	MENU_CLEAR_HISTORY = 105
 };
 
 class Frame : public wxFrame
@@ -21,11 +22,9 @@ class Frame : public wxFrame
 		~Frame();
         void FrameClickEvents(wxCommandEvent& event);
 		wxStatusBar *sb;
-		//wxTextCtrl *host;
 		wxSpinCtrl *host;
 		wxComboBox *clients;
 		wxComboBox *ip;
-		//wxTextCtrl *ip;
 		
 	private:
 		wxPanel *WxPanel1;

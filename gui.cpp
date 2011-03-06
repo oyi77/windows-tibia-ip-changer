@@ -104,6 +104,13 @@ void guiChangeIP(Frame *frame, int eventId){
         	sendDialog(wxT("IP adress not found!"), wxOK | wxICON_ERROR);
         return;
     }
+    size_t found = sip.find(":");
+    if(found != string::npos){
+        sport = atoi(sip.substr(found+1, sip.size()).c_str());
+        sip = sip.substr(0, found);
+        frame->ip->SetValue(sip);
+        frame->host->SetValue(sport);
+    }
         
     if(client != "Auto"){
         std::string s ="";
@@ -125,7 +132,11 @@ void guiChangeIP(Frame *frame, int eventId){
         return;
     }
     
-	h.saveHistory(sip);
+    char buf[4];
+    itoa(sport, buf, 10);
+    std::string save;
+    save += sip + ":" + buf;
+	h.saveHistory(save);
 	frame->ip->Clear();
 	vector<string>z;
 	z = h.getHistory();
@@ -133,7 +144,8 @@ void guiChangeIP(Frame *frame, int eventId){
 		wxString wxs(z[i].c_str(), wxConvUTF8);
 		frame->ip->Append(wxs);
 	}
-	wxString last(z[0].c_str(), wxConvUTF8);
+	std::string tmp = z[0].substr(0, z[0].size()-5);
+	wxString last(tmp.c_str(), wxConvUTF8);
 	frame->ip->SetValue(last);
 }
 
